@@ -4,6 +4,32 @@
   
   
   <entry>
+    <title>全分布式HADOOP集群搭建教程</title>
+    <link href="/2025/10/17/%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8FHADOOP%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/"/>
+    <url>/2025/10/17/%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8FHADOOP%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<p>Hadoop完全分布式搭建</p><p>\1. 集群规划</p><p>(1) IP地址分配</p><p>① Master 192.168.xxx.101</p><p>② Slave1  192.168.xxx.102</p><p>③ Slave2 192.168.xxx.103</p><p>(2) 进程划分</p><p>① Master  namenode secondarynamenode resourcemanager</p><p>② Slave1  datanode nodemanager</p><p>③ Slave2  datanode nodemanager</p><p>\2. 安装虚拟机</p><p>(1) 分区：</p><p>① &#x2F;boot  引导操作系统启动，300mb</p><p>② Swap   交换分区，大小设置为内存的两倍</p><p>③ &#x2F;    根目录，剩余空间全部分配给根目录</p><p>\3. 配置网卡配置文件</p><p>Cd  &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts</p><p>Vi  ifcfg-ens33</p><p>修改的内容：</p><p>Bootproto&#x3D;dhcp</p><p>Onboot &#x3D; yes</p><p>文末添加：</p><p>IPADDR&#x3D;192.168.XXX.101</p><p>NETMASK&#x3D;24</p><p>GATEWAY&#x3D;192.168.XXX.2</p><p>DNS1&#x3D;114.114.114.114</p><p>保存并退出</p><p>重启网卡：</p><p>Systemctl restart network</p><p>测试网络连通性：</p><p>Ping <a href="http://www.163.com/">www.163.com</a></p><p>\4. 使用远程连接工具连接虚拟机</p><p>(1) Finalshell</p><p>(2) Mobaxterm</p><p>(3) Xshell —  xftp</p><p>\5. 修改主机名称</p><p>(1) 临时性修改主机名称：hostname 主机名</p><p>(2) 永久修改主机名：hostnamectl set-hostname 主机名</p><p>(3) 查看主机名称：hostname</p><p>示例：hostnamectl set-hostname master</p><p>Bash :  root@localhost   root@master</p><p>reboot重启主机</p><p>\6. 关闭并且禁用防火墙</p><p>(1) 关闭防火墙：systemctl stop firewalld</p><p>(2) 禁用防火墙：systemctl disable firewalld</p><p>(3) 查看防火墙状态：systemctl status firewalld</p><p>\7. 修改主机名与ip地址的映射关系。</p><p>Vi  &#x2F;etc&#x2F;hosts</p><p>文末添加：</p><p>192.168.xxx.101 master</p><p>192.168.xxx.102 slave1</p><p>192.168.xxx.103 slave2</p><p>保存并退出</p><p>\8. 创建工作目录</p><p>(1) Mkdir &#x2F;opt&#x2F;data &#x2F;opt&#x2F;module &#x2F;opt&#x2F;software</p><p>\9. 安装jdk</p><p>(1) 将压缩包上传至工作目录&#x2F;opt&#x2F;software</p><p>(2) 解压</p><p>Tar -zxvf jdk-8u221-linux-x64.tar.gz  -C &#x2F;opt&#x2F;module </p><p>(3) 配置环境变量</p><p>Vi &#x2F;etc&#x2F;profile</p><p>文末添加：</p><p>Export  JAVA_HOME&#x3D;&#x2F;opt&#x2F;module&#x2F;jdk1.8.0_221</p><p>Export  PATH&#x3D;$PATH:$JAVA_HOME&#x2F;bin</p><p>\10. 安装hadoop</p><p>(1) 将压缩包上传至工作目录&#x2F;opt&#x2F;software</p><p>(2) 解压</p><p>Tar -zxvf &#x2F;opt&#x2F;software&#x2F;hadoop-3.3.4.tar.gz -C &#x2F;opt&#x2F;module</p><p>(3) 配置环境变量</p><p>Export HADOOP_HOME&#x3D;&#x2F;opt&#x2F;module&#x2F;hadoop-3.3.4</p><p>Export PATH&#x3D;$PATH:$HADOOP_HOME&#x2F;bin</p><p>Export PATH&#x3D;$PATH:$HADOOP_HOME&#x2F;sbin</p><p>\11. 重置环境变量。</p><p>(1) Source  &#x2F;etc&#x2F;profile</p><p>\12. 验证环境变量配置是否成功：</p><p>(1) 验证jdk的安装情况：java -version</p><p>(2) 验证hadoop的安装情况：hadoop version</p><p>\13. 克隆两台主机</p><p>(1) 创建完整克隆（创建链接克隆）</p><p>\14. 修改slave1  slave2的ip地址，重启网卡，修改slave1  slave2的主机名称</p><p>\15. 配置免密登录</p><p>(1) 创建密钥</p><p>① Ssh-keygen</p><p>② 生成密钥：Ssh-keygen -t rsa，每台机器执行一次。</p><p>(2) 发送密钥</p><p>① Cat  ~&#x2F;.ssh&#x2F;id_rsa.pub &gt;&gt; ~&#x2F;.ssh&#x2F;authorized_keys</p><p>② Ssh-copy-id 主机名</p><p>\1) Ssh-copy-id master–slave1—slave2</p><p>​    总共执行9次命令</p><p>\16. 配置Hadoop的配置文件。</p><p>Cd $HADOOP_HOME&#x2F;etc&#x2F;hadoop</p><p>(1) Hadoop-env.sh</p><p>Vi hadoop-env.sh</p><p>头部添加：</p><p>Export JAVA_HOME&#x3D;&#x2F;opt&#x2F;module&#x2F;jdk1.8.0_221</p><p>Export HDFS_NAMENODE_USER&#x3D;root</p><p>Export HDFS_SECONDARYNAMENODE_USER&#x3D;root</p><p>Export HDFS_DATANODE_USER&#x3D;root</p><p>Export YARN_RESOURCEMANAGER_USER&#x3D;root</p><p>Export YARN_NODEMANAGER_USER&#x3D;root</p><p>   保存并退出。</p><p>(2) Core-site.xml</p><p> Vi core-site.xml</p><configuration>  <property><p>​    <name>fs.defaultFS</name></p><p>​    <valaue>hdfs:&#x2F;&#x2F;master:9000</valaue>  </p><p>​    <!-- hdfs://192.168.xxx.101:9000 --></p><p>​    <!-- 错误！！！ hdfs://localhost:9000 --></p>  </property>  <property><p>​    <name>hadoop.temp.dir</name></p><p>​    <value>&#x2F;usr&#x2F;local&#x2F;hadoop</value></p><p>​    <!-- <value>/usr/local/hadoop</value> --></p><p>​    <value>&#x2F;opt&#x2F;data&#x2F;hadoop</value></p>  </property></configuration><p>(3) Hdfs-site.xml</p> <configuration>  <property><p>​    <name>dfs.replication</name></p><p>​    <value>3</value></p>  </property></configuration><p>(4) Mapred-site.xml</p><configuration>  <property><p>​    <name>mapreduce.framework.name</name></p><p>​    <value>yarn</value></p>  </property>  <property><p>​    <name>yarn.app.mapreduce.am.env</name></p><p>​    <value>HADOOP_MAPRED_HOME&#x3D;&#x2F;opt&#x2F;module&#x2F;hadoop-3.3.4</value></p>  </property>  <property><p>​    <name>mapreduce.map.env</name></p><p>​    <value>HADOOP_MAPRED_HOME&#x3D;&#x2F;opt&#x2F;module&#x2F;hadoop-3.3.4</value></p>  </property>  <property><p>​    <name>mapreduce.reduce.env</name></p><p>​    <value>HADOOP_MAPRED_HOME&#x3D;&#x2F;opt&#x2F;module&#x2F;hadoop-3.3.4</value></p>  </property></configuration><p>(5) Yarn-site.xml</p><configuration>  <property><p>​    <name>yarn.nodemanager.aux-services</name></p><p>​    <value>mapreduce_shuffle</value></p>  </property></configuration><p>(6) Workers</p><p>Vi  workers<br>使用 “DD” 删除原始内容，添加：</p><p>Slave1</p><p>Slave2</p><p>保存并退出。</p><p>\17. 远程分发：</p><p>(1) Scp [-r] 本地路径 用户名@主机名:目标路径</p><p>递归</p><p>(2) Scp  -r &#x2F;opt&#x2F;module&#x2F;hadoop-3.3.4&#x2F;etc&#x2F;hadoop root@slave1&#x2F;2:</p><p>&#x2F;opt&#x2F;module&#x2F;hadoop-3.3.4&#x2F;etc&#x2F;</p><p>\18. 格式化名称节点：</p><p>Hdfs namenode -format</p><p>\19. 启动结群。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>伪分布式Hadoop安装</title>
+    <link href="/2025/10/17/%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8FHadoop%E5%AE%89%E8%A3%85/"/>
+    <url>/2025/10/17/%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8FHadoop%E5%AE%89%E8%A3%85/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
     <link href="/2024/10/11/hello-world/"/>
     <url>/2024/10/11/hello-world/</url>
