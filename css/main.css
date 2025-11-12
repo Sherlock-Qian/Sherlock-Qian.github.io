@@ -879,7 +879,7 @@ i.iconfont {
     --scrollbar-hover-color: #9da8b3;
     --button-bg-color: transparent;
     --button-hover-bg-color: #46647e;
-    --highlight-bg-color: #2d333b;
+    --highlight-bg-color: #303030;
     --inlinecode-bg-color: rgba(99,110,123,0.4);
     --fold-title-color: #c4c6c9;
     --fold-border-color: #435266;
@@ -917,7 +917,7 @@ i.iconfont {
     --scrollbar-hover-color: #9da8b3;
     --button-bg-color: transparent;
     --button-hover-bg-color: #46647e;
-    --highlight-bg-color: #2d333b;
+    --highlight-bg-color: #303030;
     --inlinecode-bg-color: rgba(99,110,123,0.4);
     --fold-title-color: #c4c6c9;
     --fold-border-color: #435266;
@@ -1338,10 +1338,18 @@ i.iconfont {
   border-radius: 4px;
   margin-bottom: 1rem;
 }
-.markdown-body .hljs,
-.markdown-body .highlight pre,
-.markdown-body .code-wrapper pre,
-.markdown-body figure.highlight td.gutter {
+.code-widget-light {
+  background: rgba(255,255,255,0.8);
+  color: #333;
+}
+.code-widget-dark {
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+}
+.hljs,
+.highlight pre,
+.code-wrapper pre,
+figure.highlight td.gutter {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   background-color: var(--highlight-bg-color);
 }
