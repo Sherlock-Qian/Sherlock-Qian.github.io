@@ -19,35 +19,36 @@
   <meta name="author" content="David">
   <meta name="keywords" content="">
   
-    <meta name="description" content="HBase-伪分布式搭建教程1.HBase的下载1.1 HBase2.5.12版本官方下载地址 1.2 HBase2.5.12版本阿里云镜像站下载地址 2.HBase的安装与配置(1)将HBase上传至工作目录  (2)解压HBase，并配置环境变量   1234567891011# 解压hbasetar -zxf hbase-2.5.12-bin.tar.gz -C &#x2F;opt&#x2F;module# 配">
+    <meta name="description" content="Zookeeper的安装与配置 Zookeeper的下载  Zookeeper的**[下载列表](Apache Archive Distribution Directory)**  Zookeeper简介  2.1 什么是Zookeeper？ ​	Zookeeper是一个分布式的、开源的为分布式应用提供协调服务的项目，Zookeeper本身也是分布式的。 2.2 Zookeeper的工作机制 ​">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HBase-伪分布式搭建教程">
-<meta property="og:url" content="http://example.com/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:title" content="Zookeeper的安装与配置">
+<meta property="og:url" content="http://example.com/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="LearningNotes">
-<meta property="og:description" content="HBase-伪分布式搭建教程1.HBase的下载1.1 HBase2.5.12版本官方下载地址 1.2 HBase2.5.12版本阿里云镜像站下载地址 2.HBase的安装与配置(1)将HBase上传至工作目录  (2)解压HBase，并配置环境变量   1234567891011# 解压hbasetar -zxf hbase-2.5.12-bin.tar.gz -C &#x2F;opt&#x2F;module# 配">
+<meta property="og:description" content="Zookeeper的安装与配置 Zookeeper的下载  Zookeeper的**[下载列表](Apache Archive Distribution Directory)**  Zookeeper简介  2.1 什么是Zookeeper？ ​	Zookeeper是一个分布式的、开源的为分布式应用提供协调服务的项目，Zookeeper本身也是分布式的。 2.2 Zookeeper的工作机制 ​">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109165341452.png">
-<meta property="og:image" content="http://example.com/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109165704805.png">
-<meta property="og:image" content="http://example.com/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109165712392.png">
-<meta property="og:image" content="http://example.com/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109170445589.png">
-<meta property="og:image" content="http://example.com/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109170645086.png">
-<meta property="og:image" content="http://example.com/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109180401807.png">
-<meta property="og:image" content="http://example.com/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109180824391.png">
-<meta property="og:image" content="http://example.com/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109212013481.png">
-<meta property="og:image" content="http://example.com/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109212610083.png">
-<meta property="article:published_time" content="2025-11-09T08:24:24.000Z">
-<meta property="article:modified_time" content="2025-11-12T11:49:17.296Z">
+<meta property="og:image" content="http://example.com/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251116204906730.png">
+<meta property="og:image" content="http://example.com/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251116233654698.png">
+<meta property="og:image" content="http://example.com/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251116205338277.png">
+<meta property="og:image" content="http://example.com/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251116205622924.png">
+<meta property="og:image" content="http://example.com/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251116210214031.png">
+<meta property="og:image" content="http://example.com/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251116210551923.png">
+<meta property="og:image" content="http://example.com/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251116213232677.png">
+<meta property="og:image" content="http://example.com/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251116214248440.png">
+<meta property="og:image" content="http://example.com/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251117141617051.png">
+<meta property="og:image" content="http://example.com/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251117141910822.png">
+<meta property="article:published_time" content="2025-11-16T09:42:00.000Z">
+<meta property="article:modified_time" content="2025-11-17T06:24:33.246Z">
 <meta property="article:author" content="David">
 <meta property="article:tag" content="BigData">
-<meta property="article:tag" content="HBase">
+<meta property="article:tag" content="Zookeeper">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109165341452.png">
+<meta name="twitter:image" content="http://example.com/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251116204906730.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>HBase-伪分布式搭建教程 - LearningNotes</title>
+  <title>Zookeeper的安装与配置 - LearningNotes</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -224,7 +225,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="HBase-伪分布式搭建教程"></span>
+            <span id="subtitle" data-typed-text="Zookeeper的安装与配置"></span>
           
         </div>
 
@@ -235,8 +236,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-11-09 16:24" pubdate>
-          2025年11月9日 下午
+        <time datetime="2025-11-16 17:42" pubdate>
+          2025年11月16日 下午
         </time>
       </span>
     
@@ -247,7 +248,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          1.3k 字
         
       </span>
     
@@ -258,7 +259,7 @@
         
         
         
-          7 分钟
+          6 分钟
         
       </span>
     
@@ -304,105 +305,63 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">HBase-伪分布式搭建教程</h1>
+            <h1 id="seo-header">Zookeeper的安装与配置</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="HBase-伪分布式搭建教程"><a href="#HBase-伪分布式搭建教程" class="headerlink" title="HBase-伪分布式搭建教程"></a>HBase-伪分布式搭建教程</h1><h3 id="1-HBase的下载"><a href="#1-HBase的下载" class="headerlink" title="1.HBase的下载"></a>1.HBase的下载</h3><p>1.1 HBase2.5.12版本官方<a target="_blank" rel="noopener" href="https://dlcdn.apache.org/hbase/2.5.12/hbase-2.5.12-bin.tar.gz">下载地址</a></p>
-<p>1.2 HBase2.5.12版本阿里云镜像站<a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/apache/hbase/2.5.12/hbase-2.5.12-bin.tar.gz">下载地址</a></p>
-<h3 id="2-HBase的安装与配置"><a href="#2-HBase的安装与配置" class="headerlink" title="2.HBase的安装与配置"></a>2.HBase的安装与配置</h3><p>(1)将HBase上传至工作目录</p>
-<p><img src="/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109165341452.png" srcset="/img/loading.gif" lazyload alt="image-20251109165341452"></p>
-<p>(2)解压HBase，并配置环境变量</p>
-<p><img src="/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109165704805.png" srcset="/img/loading.gif" lazyload alt="image-20251109165704805"></p>
-<p><img src="/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109165712392.png" srcset="/img/loading.gif" lazyload alt="image-20251109165712392"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">解压hbase</span><br>tar -zxf hbase-2.5.12-bin.tar.gz -C /opt/module<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">配置环境变量</span><br>vi /etc/profile<br><span class="hljs-meta prompt_"># </span><span class="language-bash">文末添加以下内容</span><br>export HBASE_HOME=/opt/module/hbase-2.5.12<br>export PATH=$PATH:$HBASE_HOME/bin<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">刷新环境变量</span><br>source /etc/profile<br></code></pre></td></tr></table></figure>
+                <h1 id="Zookeeper的安装与配置"><a href="#Zookeeper的安装与配置" class="headerlink" title="Zookeeper的安装与配置"></a>Zookeeper的安装与配置</h1><ol>
+<li>Zookeeper的下载</li>
+</ol>
+<p>Zookeeper的**[下载列表](<a target="_blank" rel="noopener" href="https://archive.apache.org/dist/zookeeper/">Apache Archive Distribution Directory</a>)**</p>
+<ol start="2">
+<li>Zookeeper简介</li>
+</ol>
+<p>2.1 什么是Zookeeper？</p>
+<p>​	Zookeeper是一个分布式的、开源的为分布式应用提供协调服务的项目，Zookeeper本身也是分布式的。</p>
+<p>2.2 Zookeeper的工作机制</p>
+<p>​	zookeeper的数据模型是树状结构的层次模型，称之为data tree,每一个节点称之为znode，zookeeper会为每一个应用程序创建一个节点，每个应用程序下的进程则会创建一个叶子结点，若叶子结点存在，则说明该进程仍正常运行，反之则会报告。</p>
+<ol start="3">
+<li><p>Zookeeper的安装与配置</p>
+<p>(1) 解压Zookeeper，并配置环境变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">解压Zookeeper</span><br>tar -zxf apache-zookeeper-3.8.5-bin.tar.gz -C /opt/module<br><span class="hljs-meta prompt_"># </span><span class="language-bash">修改文件夹名称</span><br>mv apache-zookeeper-3.8.5-bin zookeeper<br></code></pre></td></tr></table></figure>
 
-<p>(3)修改hbase-env.sh文件</p>
-<p><img src="/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109170445589.png" srcset="/img/loading.gif" lazyload alt="image-20251109170445589"></p>
-<p><img src="/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109170645086.png" srcset="/img/loading.gif" lazyload alt="image-20251109170645086"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">HBASE_CLASSPATH设置为Hadoop配置文件的目录</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">HBASE_MANAGES_ZK设置为<span class="hljs-literal">true</span>，使用HBASE自带的Zookeeper</span><br><br>export HBASE_CLASSPATH=/opt/module/hadoop-3.3.6/etc/hadoop<br>export JAVA_HOME=/opt/module/jdk1.8.0_221<br>export HBASE_MANAGES_ZK=true<br><br></code></pre></td></tr></table></figure>
+<p><img src="/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251116204906730.png" srcset="/img/loading.gif" lazyload alt="Zookeeper的解压"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">export ZOOKEEPER_HOME=/opt/module/zookeeper<br>export PATH=$PATH:$ZOOKEEPER_HOME/bin<br></code></pre></td></tr></table></figure>
 
-<p>(4)修改hbase-site.xml</p>
-<p><img src="/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109180401807.png" srcset="/img/loading.gif" lazyload alt="image-20251109180401807"></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs xml"># 配置hbase-site.xml<br># hbase.cluster.distributed：控制集群的模式，修改为true<br># hbase.rootdir：集群中所有RegionServer共享目录，用于持久化HBase的数据，一般设置成hdfs的文件目录<br># hbase.unsafe.stream.capability.enforce避免启动时无法找到HMaster进程的错误<br><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>hbase.cluster.distributed<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>hbase.rootdir<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>hdfs://localhost:9000/hbase<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>hbase.unsafe.stream.capability.enforce<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><img src="/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251116233654698.png" srcset="/img/loading.gif" lazyload alt="image-20251116233654698"></p>
+</li>
+</ol>
+<p>​	(2) 创建Zookeeper的数据与日志存放目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">创建Zookeeper的数据与日志存放目录</span><br>cd /opt/module/zookeeper<br>mkdir data logs<br></code></pre></td></tr></table></figure>
 
-<p>(5)确保Hadoop集群运行的状态下启动HBase</p>
-<p><img src="/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109180824391.png" srcset="/img/loading.gif" lazyload alt="image-20251109180824391"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">start-hbase.sh<br></code></pre></td></tr></table></figure>
+<p><img src="/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251116205338277.png" srcset="/img/loading.gif" lazyload alt="创建Zookeeper的数据与日志存放目录"></p>
+<p>​	(3)修改Zookeeper配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">修改Zookeeper配置文件</span><br>cd /opt/module/zookeeper/conf<br>cp zoo_sample.cfg zoo.cfg<br>vi zoo.cfg<br></code></pre></td></tr></table></figure>
 
-<p>(6)查看HBase可视化界面</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">HBase的端口号为16010</span><br>192.168.xxx.101:16010<br></code></pre></td></tr></table></figure>
+<p><img src="/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251116205622924.png" srcset="/img/loading.gif" lazyload alt="备份配置文件"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">在zoo.cfg中添加以下内容</span><br><br>dataDir=/opt/module/zookeeper/data<br>dataLogDir=/opt/module/zookeeper/logs<br><br>server.1=192.168.47.101:2888:3888<br>server.2=192.168.47.102:2888:3888<br>server.3=192.168.47.103:2888:3888<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109212013481.png" srcset="/img/loading.gif" lazyload alt="image-20251109212013481"></p>
-<h3 id="3-HBase-Shell"><a href="#3-HBase-Shell" class="headerlink" title="3.HBase Shell"></a>3.HBase Shell</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">hbase shell<br></code></pre></td></tr></table></figure>
+<p><img src="/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251116210214031.png" srcset="/img/loading.gif" lazyload alt="修改配置文件"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">向myid文件中填入机器编号</span><br>echo 1 &gt;&gt; /opt/module/zookeeper/data/myid<br><span class="hljs-meta prompt_"># </span><span class="language-bash">slave1、slave2的myid分别为2、3</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/image-20251109212610083.png" srcset="/img/loading.gif" lazyload alt="image-20251109212610083"></p>
-<p>HBase Shell常用命令</p>
-<table>
-<thead>
-<tr>
-<th>status</th>
-<th align="left">系统上运行服务器的详细信息</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>version</td>
-<td align="left">HBase的版本信息</td>
-</tr>
-<tr>
-<td>create</td>
-<td align="left">创建表</td>
-</tr>
-<tr>
-<td>describe</td>
-<td align="left">显示表的相关详细信息</td>
-</tr>
-<tr>
-<td>delete</td>
-<td align="left">删除指定对象的值(可以是表，行、列对应的值)</td>
-</tr>
-<tr>
-<td>disable</td>
-<td align="left">使表无效</td>
-</tr>
-<tr>
-<td>enable</td>
-<td align="left">使表有效</td>
-</tr>
-<tr>
-<td>drop</td>
-<td align="left">删除表</td>
-</tr>
-<tr>
-<td>exist</td>
-<td align="left">测试表是否存在</td>
-</tr>
-<tr>
-<td>exit</td>
-<td align="left">退出hbase shell</td>
-</tr>
-<tr>
-<td>list</td>
-<td align="left">列出hbase中存在的所有表</td>
-</tr>
-<tr>
-<td>get</td>
-<td align="left">获取行或单元的值</td>
-</tr>
-<tr>
-<td>put</td>
-<td align="left">向指向的表单元添加值</td>
-</tr>
-<tr>
-<td>count</td>
-<td align="left">统计表中行的数量</td>
-</tr>
-<tr>
-<td>incr</td>
-<td align="left">增加指定表，行或列的值</td>
-</tr>
-</tbody></table>
+<p><img src="/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251116210551923.png" srcset="/img/loading.gif" lazyload alt="修改myid文件"></p>
+<p>(4)将Zookeeper同步至slave1、slave2</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">scp -r /opt/module/zookeeper root@slave1:/opt/module<br>scp -r /opt/module/zookeeper root@slave2:/opt/module<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251116213232677.png" srcset="/img/loading.gif" lazyload alt="同步Zookeeper文件"></p>
+<p>(5)修改slave1、slave2的myid文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">覆盖myid中原始内容</span><br>echo 2 &gt; /opt/module/zookeeper/data/myid<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251116214248440.png" srcset="/img/loading.gif" lazyload alt="覆盖myid中原始内容"></p>
+<p>(6)分别在三台机器启动Zookeeper</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">zkServer.sh start<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251117141617051.png" srcset="/img/loading.gif" lazyload alt="启动Zookeeper服务"></p>
+<p>(7)查看Zookeeper服务的状态</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">zkServer.sh status<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/image-20251117141910822.png" srcset="/img/loading.gif" lazyload alt="查看zk服务状态"></p>
 
                 
               </div>
@@ -438,7 +397,7 @@
       
         <a href="/tags/BigData/" class="print-no-link">#BigData</a>
       
-        <a href="/tags/HBase/" class="print-no-link">#HBase</a>
+        <a href="/tags/Zookeeper/" class="print-no-link">#Zookeeper</a>
       
     </div>
   
@@ -450,8 +409,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>HBase-伪分布式搭建教程</div>
-      <div>http://example.com/2025/11/09/HBase-伪分布式搭建教程/</div>
+      <div>Zookeeper的安装与配置</div>
+      <div>http://example.com/2025/11/16/Zookeeper的安装与配置/</div>
     </div>
     <div class="license-meta">
       
@@ -463,7 +422,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年11月9日</div>
+          <div>2025年11月16日</div>
         </div>
       
       
@@ -495,18 +454,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/11/16/Zookeeper%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" title="Zookeeper的安装与配置">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Zookeeper的安装与配置</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/10/27/pyecharts%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE/" title="Pyecharts基础绘图">
-                        <span class="hidden-mobile">Pyecharts基础绘图</span>
+                      <a href="/2025/11/09/HBase-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/" title="HBase-伪分布式搭建教程">
+                        <span class="hidden-mobile">HBase-伪分布式搭建教程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
